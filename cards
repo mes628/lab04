@@ -1,0 +1,60 @@
+//Megan Shapiro, mes628@lehigh.edu
+//CSE7 Lab04
+
+//Purpose of this program is to pick a random card from a deck of cards
+
+//This is a Java Class
+class cards {
+    public static void main(String[] args){
+
+        int cardNumber = (int)(Math.random() * 52 + 1);     //generates a random number from 1-52
+
+        String suit = "";               //string that corresponds to name of suit
+        String cardIdentity = "";       //string that corresponds to identity of card
+
+        if (cardNumber >= 1 && cardNumber <= 13) {
+            suit = "Diamonds";
+        } 
+        else if (cardNumber >= 14 && cardNumber <= 26) {
+            suit = "Clubs";
+        }
+        else if (cardNumber >= 27 && cardNumber <= 39){
+            suit = "Hearts";
+        }
+        else if (cardNumber >= 40 && cardNumber <= 52){
+            suit = "Spades";
+        }
+
+        // Assign card identity based on card number
+        // Gets the value from 1 to 13 within each suit, map cardNumber (ranging from 1 to 52) to a card rank (Ace = 1, 2, 3, ..., King = 13) within a suit. 
+        // Each suit has 13 cards, and this pattern repeats across the four suits (Diamonds, Clubs, Hearts, Spades). The formula ensures that the card number maps to one of these 13 values, regardless of the suit.
+
+        int cardValue = (cardNumber - 1) % 13 + 1; 
+
+        // cardNumber - 1: adjusts the cardNumber so that the range is 0 to 51 instead of 1 to 52. This is because the modulus operation (%) works better when starting from 0. It also ensures that the modulus operation treats cards in groups of 13
+        // % 13: modulus operator (%) finds the remainder when dividing by 13
+        // + 1: the modulus operation results in values from 0 to 12, adding 1 shifts the result to be from 1 to 13
+
+        if (cardValue == 1) {
+            cardIdentity = "Ace";
+        } else if (cardValue == 11) {
+            cardIdentity = "Jack";
+        } else if (cardValue == 12) {
+            cardIdentity = "Queen";
+        } else if (cardValue == 13) {
+            cardIdentity = "King";
+        } else {
+            cardIdentity = Integer.toString(cardValue);
+        }
+
+        // Print the randomly selected card
+        System.out.println("You picked the " + cardIdentity + " of " + suit);
+
+
+
+
+    }
+
+}
+
+
